@@ -5,7 +5,7 @@ import "errors"
 var errNotMultipleBlockSize error = errors.New("length of padded input is not a multiple of block size")
 var errinvalidPadding error = errors.New("invalid padding")
 
-// Pad given input of length n adds a mandatory byte valued 0x80 to input followed by m < block-size bytes valued 0x00 such that n + m + 1 is the smallest multiple block-size (https://eris.codeberg.page/spec/#name-pad).
+// Pad, given input of length n, adds a mandatory byte valued 0x80 to input followed by m < block-size bytes valued 0x00 such that n + m + 1 is the smallest multiple block-size (https://eris.codeberg.page/spec/#name-pad).
 func pad(input []byte, blockSize int) ([]byte, error) {
 	n := len(input)
 

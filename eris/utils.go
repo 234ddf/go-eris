@@ -1,5 +1,6 @@
 package eris
 
+// SplitContent pads and splits the input content into uniformly sized blocks of blockSize. (https://eris.codeberg.page/spec/#name-split-content-into-leaf-nod)
 func splitContent(content []byte, blockSize int) ([][]byte, error) {
 	// pad content
 	padded, err := pad(content, blockSize)
