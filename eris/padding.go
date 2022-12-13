@@ -1,4 +1,4 @@
-package padding
+package eris
 
 import "errors"
 
@@ -6,7 +6,7 @@ var errNotMultipleBlockSize error = errors.New("length of padded input is not a 
 var errinvalidPadding error = errors.New("invalid padding")
 
 // Pad given input of length n adds a mandatory byte valued 0x80 to input followed by m < block-size bytes valued 0x00 such that n + m + 1 is the smallest multiple block-size (https://eris.codeberg.page/spec/#name-pad).
-func Pad(input []byte, blockSize int) ([]byte, error) {
+func pad(input []byte, blockSize int) ([]byte, error) {
 	n := len(input)
 
 	// the final modulo blockSize ensures that if (n + 1) modulo block-size = 0 no unnecessary zeroes are added.
@@ -24,7 +24,7 @@ func Pad(input []byte, blockSize int) ([]byte, error) {
 
 // Unpad starts reading bytes from the end of input until a 0x80 is read and then returns bytes of input before the 0x80.
 // This function throws an error if a value other than 0x00 is read before reading 0x80, if no 0x80 is read after reading block-size bytes from the end of input or if length of input is less than block-size (https://eris.codeberg.page/spec/#name-unpad).
-func Unpad(input []byte, blockSize int) ([]byte, error) {
+func unpad(input []byte, blockSize int) ([]byte, error) {
 
 	n := len(input)
 
